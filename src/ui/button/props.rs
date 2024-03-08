@@ -23,6 +23,7 @@ pub enum ButtonVariants {
     _Outline,
     _Ghost,
     _Link,
+    // Additional variants can be added here.
 }
 
 impl Default for ButtonVariants {

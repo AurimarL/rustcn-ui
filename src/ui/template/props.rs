@@ -1,5 +1,3 @@
-//template/props.rs
-
 use dioxus::prelude::*;
 #[derive(PartialEq, Props, Clone)]
 pub struct TemplateProps {
