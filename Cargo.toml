@@ -9,3 +9,8 @@ description = "A shadcn-ui for Dioxus Rust Web Framework"
 
 [dependencies]
 dioxus = { version = "0.5.0-alpha.0", features = ["web"] }
+
+
+[lib]
+name = "rustcn_ui"
+path = "src/lib.rs"

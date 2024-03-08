@@ -1,3 +1,4 @@
+//ui/template/mod.rs
 use dioxus::prelude::*;
 
 mod props;
