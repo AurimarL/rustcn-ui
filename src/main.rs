@@ -2,10 +2,12 @@
 use dioxus::prelude::*;
 
 mod ui;
-use ui::button::{Button, ButtonSize, ButtonVariants};
-use ui::input::Input;
 
-use ui::template::{Template, TemplateVariants};
+use ui::{
+    button::{Button, ButtonSize, ButtonVariants},
+    input::Input,
+    template::{Template, TemplateVariants},
+};
 
 fn main() {
     launch(App);
@@ -27,7 +29,6 @@ fn App() -> Element {
             Template{
                 variant:TemplateVariants::Default
             }
-
         }
     }
 }

@@ -5,7 +5,7 @@ mod props;
 pub use props::{ButtonProps, ButtonSize, ButtonVariants};
 
 mod style;
- use style::{get_size_class, get_variant_class, BASE_CLASS};
+use style::{get_size_class, get_variant_class, BASE_CLASS};
 
 pub fn Button(props: ButtonProps) -> Element {
     // Destructure the props for easier access
