@@ -1,10 +1,11 @@
-// main.rs
 #![allow(non_snake_case)]
 use dioxus::prelude::*;
 
 mod ui;
 use ui::button::{Button, ButtonSize, ButtonVariants};
-use ui::input::{Input, InputSize, InputVariants};
+use ui::input::Input;
+
+use ui::template::{Template, TemplateVariants};
 
 fn main() {
     launch(App);
@@ -17,15 +18,16 @@ fn App() -> Element {
             Button {
                 class: "custom-button-class",
                 variant: ButtonVariants::Default,
-                size: ButtonSize::_ICON,
+                size: ButtonSize::Default,
                 text: "Press me",
             }
-            Input {
-                class: "custom-input-class",
-                variant: InputVariants::_Filled,
-                size: InputSize::Default,
-                placeholder: "Enter text here",
+            Input{
+                placeholder:"Escreva algo aqui"
             }
+            Template{
+                variant:TemplateVariants::Default
+            }
+
         }
     }
 }
