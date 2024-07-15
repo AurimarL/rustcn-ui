@@ -1,14 +1,13 @@
 #![allow(non_snake_case)]
 
 use dioxus::prelude::*;
-use tracing::Level;
+use rustcn_ui::button::{Button, ButtonVariants::Default};
+use tracing::{info, Level};
 
 #[derive(Clone, Routable, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 enum Route {
     #[route("/")]
     Home {},
-    #[route("/blog/:id")]
-    Blog { id: i32 },
 }
 
 fn main() {
@@ -19,15 +18,7 @@ fn main() {
 
 fn App() -> Element {
     rsx! {
-        Router::<Route> {}
-    }
-}
-
-#[component]
-fn Blog(id: i32) -> Element {
-    rsx! {
-        Link { to: Route::Home {}, "Go to counter" }
-        "Blog post {id}"
+        Router::<Route> {   }
     }
 }
 
@@ -35,18 +26,10 @@ fn Blog(id: i32) -> Element {
 fn Home() -> Element {
     let mut count = use_signal(|| 0);
     let mut text = use_signal(|| String::from("..."));
-
     rsx! {
-        Link {
-            to: Route::Blog {
-                id: count()
-            },
-            "Go to blog"
-        }
         div {
             h1 { "High-Five counter: {count}" }
-            button { onclick: move |_| count += 1, "Up high!" }
-            button { onclick: move |_| count -= 1, "Down low!" }
+            Button { text: "Down low!",variant:Default }
             button {
                 onclick: move |_| async move {
                     if let Ok(data) = get_server_data().await {

@@ -23,6 +23,6 @@ pub fn Button(props: ButtonProps) -> Element {
     let combined_class = format!("{} {} {} {}", BASE_CLASS, variant_class, size_class, class);
 
     rsx! {
-        button { class: "{combined_class}", "{text}" }
+        button {  class: "{combined_class}" ,"{text}" }
     }
 }
