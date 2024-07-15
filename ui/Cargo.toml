@@ -12,7 +12,7 @@
 [package]
 edition = "2021"
 name = "rustcn-ui"
-version = "0.1.6"
+version = "0.1.7"
 authors = ["Aurimar Lopes"]
 description = "A shadcn-ui for Dioxus Rust Web Framework"
 readme = "README.md"
