@@ -11,8 +11,13 @@ pub struct ButtonProps {
 
     #[props(default)]
     pub size: ButtonSize,
-    #[props(default = "".to_string())]
-    pub text: String,
+
+    #[props(default)]
+    pub onclick: Option<EventHandler<MouseEvent>>,
+
+    #[props(default)]
+    pub children: Element,
+
 }
 
 #[derive(PartialEq, Clone)]

@@ -3,6 +3,7 @@
 use dioxus::prelude::*;
 use rustcn_ui::button::{Button, ButtonVariants::Default};
 use tracing::{info, Level};
+use wasm_bindgen_futures::spawn_local;
 
 #[derive(Clone, Routable, Debug, PartialEq, serde::Serialize, serde::Deserialize)]
 enum Route {
@@ -24,23 +25,26 @@ fn App() -> Element {
 
 #[component]
 fn Home() -> Element {
-    let mut count = use_signal(|| 0);
-    let mut text = use_signal(|| String::from("..."));
+    let count = use_signal(|| 0);
+    let text = use_signal(|| String::from("..."));
     rsx! {
         div {
             h1 { "High-Five counter: {count}" }
-            Button { text: "Down low!",variant:Default }
-            button {
-                onclick: move |_| async move {
-                    if let Ok(data) = get_server_data().await {
-                        tracing::info!("Client received: {}", data);
-                        text.set(data.clone());
-                        post_server_data(data).await.unwrap();
-                    }
-                },
+            Button {
+                variant: Default,
+                onclick: Some(EventHandler::new(move |_| {
+                    let mut text = text.clone();
+                    spawn_local(async move {
+                        if let Ok(data) = get_server_data().await {
+                            tracing::info!("Client received: {}", data);
+                            text.set(data.clone());
+                            post_server_data(data).await.unwrap();
+                        }
+                    });
+                })),
                 "Get Server Data"
             }
-            p { "Server data: {text}"}
+            p { "Server data: {text}" }
         }
     }
 }

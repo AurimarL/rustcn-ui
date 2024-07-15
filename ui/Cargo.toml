@@ -22,6 +22,10 @@ license = "MIT"
 name = "rustcn_ui"
 path = "src/lib.rs"
 
+[dependencies]
+dioxus-html = "0.5.1"
+wasm-bindgen-futures = "0.4.42"
+
 [dependencies.dioxus]
 version = "0.5.0-alpha.0"
 features = ["web"]

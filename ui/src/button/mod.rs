@@ -7,13 +7,15 @@ pub use props::{ButtonProps, ButtonSize, ButtonVariants};
 mod style;
 use style::{get_size_class, get_variant_class, BASE_CLASS};
 
+#[component]
 pub fn Button(props: ButtonProps) -> Element {
     // Destructure the props for easier access
     let ButtonProps {
         class,
         variant,
         size,
-        text,
+        children,
+        onclick,
     } = props;
 
     let variant_class = get_variant_class(&variant);
@@ -23,6 +25,14 @@ pub fn Button(props: ButtonProps) -> Element {
     let combined_class = format!("{} {} {} {}", BASE_CLASS, variant_class, size_class, class);
 
     rsx! {
-        button {  class: "{combined_class}" ,"{text}" }
+        button {
+            class: "{combined_class}",
+            onclick: move |event| {
+                if let Some(handler) = onclick {
+                    handler.call(event);
+                }
+            },
+            {children}
+        }
     }
 }
